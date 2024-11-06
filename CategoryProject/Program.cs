@@ -1,31 +1,31 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using System.Net.Http;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using CategoryProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-// Register HttpClient for API access
-builder.Services.AddHttpClient("CategoryApi", client =>
-{
-    client.BaseAddress = new Uri("http://localhost:5240"); // Use your Minimal API HTTP URL
-}).ConfigurePrimaryHttpMessageHandler(() =>
-    new HttpClientHandler
+builder.Services.AddHttpClient<CategoryService>()
+    .ConfigurePrimaryHttpMessageHandler(() =>
     {
-        ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true
+        return new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+        };
     });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

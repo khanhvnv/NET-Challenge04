@@ -1,16 +1,15 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using CategoryApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Category API", Version = "v1" });
-});
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -18,16 +17,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Category API V1");
-    });
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
-var categories = new List<string> { "Electronics", "Books", "Clothing", "Furniture" };
-
-app.MapGet("/categories", () => categories);
+app.MapGet("/categories", async (ApplicationDbContext context) =>
+{
+    var categories = await context.Categories.ToListAsync();
+    return categories;
+})
+.WithName("GetCategories")
+.WithOpenApi();
 
 app.Run();
