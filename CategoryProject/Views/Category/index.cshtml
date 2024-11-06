@@ -1,0 +1,18 @@
+@model List<string>
+
+<h2>Category List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category</td>
+            </tr>
+        }
+    </tbody>
+</table>
