@@ -61,13 +61,19 @@ In a terminal, run the following command to trust the .NET development certifica
 Restart both projects after running this command.
 	
 Step 6: Run Both Projects and Verify the Results
-	1. Run the Minimal API (CategoryApi) in one terminal:
-		○ Open the terminal in CategoryApi project folder and run:	dotnet run
+	
+ 	1. Run the Minimal API (CategoryApi) in one terminal:
+		○ Open the terminal in CategoryApi project folder and run: dotnet run
 		○ Ensure that it’s running on https://localhost:5001 (replace 5000 by the port CategoryApi is listening on)
 		
-	2. Run the MVC Project (CategoryProject) in another terminal:
+	2.Update the BaseAddress in CategoryProject>Services>CategoryService.cs 
+		○ Find the BaseAddress
+		○ replace the current port by the port CategoryApi is listening on
+
+  	3. Run the MVC Project (CategoryProject) in another terminal:
 		○ Open the terminal in CategoryProject project folder and run:	dotnet run
 		○ Open a browser and navigate to http://localhost:5000/Category (or the appropriate port for your MVC project).
+
 
 Verification
 - The "Category" page in the MVC project should display a table with the categories retrieved from the Minimal API instead of the hardcoded data.
