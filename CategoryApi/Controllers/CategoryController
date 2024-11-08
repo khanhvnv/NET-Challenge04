@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using CategoryApi.Models;
-using CategoryApi.Services;
+using UI_Final.Models;
+using UI_Final.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CategoryApi.Controllers
+namespace UI_Final.Controllers
 {
     public class CategoryController : Controller
     {
@@ -14,6 +14,7 @@ namespace CategoryApi.Controllers
         {
             _categoryService = categoryService;
         }
+
         public async Task<IActionResult> Index()
         {
             var categories = await _categoryService.GetCategoriesAsync();

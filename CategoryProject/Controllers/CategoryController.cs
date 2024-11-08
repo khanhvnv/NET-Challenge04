@@ -14,10 +14,11 @@ namespace CategoryProject.Controllers
         {
             _categoryService = categoryService;
         }
+
         public async Task<IActionResult> Index()
         {
             var categories = await _categoryService.GetCategoriesAsync();
             return View(categories);
-        }        
+        }
     }
 }

@@ -17,10 +17,10 @@ namespace CategoryApi.Data
             base.OnModelCreating(modelBuilder);
             // Seed data
             modelBuilder.Entity<Category>().HasData(
-                new Category { Id = 1, Name = "Electronics", Description ="Electronics" },
-                new Category { Id = 2, Name = "Books", Description = "Books"},
-                new Category { Id = 3, Name = "Clothing", Description = "Clothing"},
-                new Category { Id = 4, Name = "Home & Kitchen", Description = "Home & Kitchen"}
+                new Category { ID = 1, Name = "Electronics" },
+                new Category { ID = 2, Name = "Books" },
+                new Category { ID = 3, Name = "Clothing" },
+                new Category { ID = 4, Name = "Home & Kitchen" }
             );
         }
     }

@@ -27,13 +27,14 @@ Step 1: Set Up Your Development Environment
 Step 2: Set Up the Project for Entity Framework Core
 1. Install Required NuGet Packages
 You need to install the following NuGet packages for Entity Framework Core:
-	• Microsoft.EntityFrameworkCore.SqlServer (for SQL Server database provider)
-	• Microsoft.EntityFrameworkCore.Tools (for EF Core tools)
-	• Microsoft.EntityFrameworkCore.Design (for design-time support)
+-	Microsoft.EntityFrameworkCore.SqlServer (for SQL Server database provider)
+-	Microsoft.EntityFrameworkCore.Tools (for EF Core tools)
+-	Microsoft.EntityFrameworkCore.Design (for design-time support)
+
 Open your terminal and run the following commands in your project folder:
-	dotnet add package Microsoft.EntityFrameworkCore --version 8.0.2
-	dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 8.0.2
-	dotnet add package Microsoft.EntityFrameworkCore.Tools --version 8.0.2
+-	dotnet add package Microsoft.EntityFrameworkCore --version 8.0.2
+-	dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 8.0.2
+-	dotnet add package Microsoft.EntityFrameworkCore.Tools --version 8.0.2
 These packages will allow us to interact with SQL Server and run migrations for creating the database schema.
 
 Run the following command to install the Swagger package to use Swagger:
